@@ -8,6 +8,12 @@ import org.json.JSONObject;
 import org.json.XML;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -126,5 +132,34 @@ public class VolunteeringService {
     }
 
     public Volunteering getVolunteeringById(Long volunteeringId) {
+        return volunteeringRepository
+            .findById(volunteeringId).get(0);
+
+    }
+
+    public List<VolunteeringDto> getInfo() {
+        return volunteeringRepository
+            .findAll().stream()
+            .map(info -> VolunteeringDto.createDto(info))
+            .collect(Collectors.toList());
+    }
+
+    public Page<VolunteeringDto> searchPrograms(
+        String progrmSj, String nanmmbyNm, Integer progrmBgnde, Integer progrmEndde,
+        Integer sidoCd, Integer gugunCd, Integer actBeginTm, Integer actEndTm,
+        String adultPosblAt, String yngbgsPosblAt,
+        int page, int size, String sortField, Sort.Direction direction) {
+
+        Specification<Volunteering> spec = VolunteertingSpecification.filterByCriteria(
+            progrmSj, nanmmbyNm, progrmBgnde, progrmEndde, sidoCd, gugunCd,
+            actBeginTm, actEndTm, adultPosblAt, yngbgsPosblAt);
+
+        Sort sort = Sort.by(direction, sortField);
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+
+        Page<Volunteering> volunteeringPage = volunteeringRepository.findAll(spec, pageable);
+
+        return  volunteeringPage.map(VolunteeringDto::createDto);
     }
 }
