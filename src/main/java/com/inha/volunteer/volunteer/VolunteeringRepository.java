@@ -1,5 +1,6 @@
 package com.inha.volunteer.volunteer;
 
+import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -15,7 +16,7 @@ public interface VolunteeringRepository extends JpaRepository<Volunteering, Inte
 
     List<Volunteering> findByGugunCd(Integer gugunCd);
 
-    List<Volunteering> findById(Long id);
+    Optional<Volunteering> findById(Long id);
 
 
     Page<Volunteering> findAll(Specification<Volunteering> spec, Pageable pageable);

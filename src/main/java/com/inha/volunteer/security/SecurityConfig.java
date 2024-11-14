@@ -31,17 +31,8 @@ public class SecurityConfig {
                         .addHeaderWriter(new XFrameOptionsHeaderWriter(
                                 XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN
                         )))
-                .formLogin((formLogin)-> formLogin
-                        .loginPage("/user/login")
-                        .successHandler(authSuccessHandler))
-//                        .failureHandler())
+                 .formLogin(formLogin -> formLogin.disable()) // 기본 로그인 폼 비활성화
 
-//                        .defaultSuccessUrl("http://localhost:3000"))
-//                .login
-                .logout((logout)->logout
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
-                        .logoutSuccessUrl("/")
-                        .invalidateHttpSession(true))
                 .sessionManagement((session) -> session
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                 .cors((cors)->cors.configurationSource(CorsConfig.corsConfigurationSource()));

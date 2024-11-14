@@ -133,7 +133,7 @@ public class VolunteeringService {
 
     public Volunteering getVolunteeringById(Long volunteeringId) {
         return volunteeringRepository
-            .findById(volunteeringId).get(0);
+            .findById(volunteeringId).get();
 
     }
 
