@@ -18,4 +18,5 @@ public class UserCreateDto {
     private String password2;
 
     private String nickname;
+
 }
