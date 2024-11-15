@@ -5,6 +5,7 @@ import com.inha.volunteer.user.SiteUserRepository;
 import com.inha.volunteer.volunteer.Volunteering;
 import com.inha.volunteer.volunteer.VolunteeringRepository;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,24 +41,31 @@ public class BookmarkService {
         if (bookmarkRepository.existsByUserAndVolunteering(user, volunteering)) {
             throw new IllegalArgumentException("이미 북마크에 추가된 항목입니다.");
         }
-            // 새로운 북마크 객체 생성
-            Bookmark bookmark = new Bookmark();
-            bookmark.setUser(user);
-            bookmark.setVolunteering(volunteering);
-            bookmark.setCreatedAt(LocalDateTime.now());
+        // 새로운 북마크 객체 생성
+        Bookmark bookmark = new Bookmark();
+        bookmark.setUser(user);
+        bookmark.setVolunteering(volunteering);
+        bookmark.setCreatedAt(LocalDateTime.now());
 
-            // 북마크 저장
-            bookmarkRepository.save(bookmark);
-        }
-
-
+        // 북마크 저장
+        bookmarkRepository.save(bookmark);
     }
 
-//    public void removeBookmark(Long bookmarkId, String name) {
-//    }
-//
-//    public boolean isBookmarked(SiteUser user, Volunteering volunteering) {
-//        return false;
-//
-//    }
-//}
+    public void removeBookmark(Long volunteeringId, String name) {
+        Optional<Bookmark> bookmarkOptional = bookmarkRepository.findByVolunteeringIdAndUserLoginId(volunteeringId, name);
+
+        if (bookmarkOptional.isPresent()) {
+            Bookmark bookmark = bookmarkOptional.get();
+            bookmarkRepository.delete(bookmark);
+        } else {
+            throw new IllegalArgumentException("Bookmark not found with Volunteering ID: " + volunteeringId + " and Name: " + name);
+        }
+    }
+
+
+
+
+
+}
+
+

@@ -40,16 +40,16 @@ public class BookmarkController {
         }
     }
 
-//    // 북마크 삭제
-//    @DeleteMapping("/remove/{bookmarkId}")
-//    public ResponseEntity<String> removeBookmark(@PathVariable Long bookmarkId, Principal principal) {
-//        try {
-//            bookmarkService.removeBookmark(bookmarkId, principal.getName());
-//            return ResponseEntity.ok("Bookmark removed successfully");
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error removing bookmark");
-//        }
-//    }
+    // 북마크 삭제
+    @DeleteMapping("/remove/{volunteeringId}")
+    public ResponseEntity<String> removeBookmark(@PathVariable Long volunteeringId, Principal principal) {
+        try {
+            bookmarkService.removeBookmark(volunteeringId, principal.getName());
+            return ResponseEntity.ok("Bookmark removed successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error removing bookmark");
+        }
+    }
 //
 //    // 북마크 목록 조회
 //    @GetMapping("/list")
