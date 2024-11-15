@@ -39,7 +39,7 @@ public class VolunteeringService {
         try {
             StringBuilder urlBuilder = new StringBuilder("http://openapi.1365.go.kr/openapi/service/rest/VolunteerPartcptnService/getVltrSearchWordList"); /*URL*/
             urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "="+ URLEncoder.encode("vb52G3WJqnRQ7ECwTfXfSGQJY3AFx9yCfxGlDJGPgAiUVTu3g+qmq+8wZNLRKenbUiuGfuLPwmJHpxMb9SbYow==", "UTF-8")); /*Service Key*/
-            urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("9900", "UTF-8")); /*프로그램등록번호*/
+            urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*프로그램등록번호*/
             urlBuilder.append("&" + URLEncoder.encode("Keyword","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*프로그램등록번호*/
             urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*프로그램등록번호*/
 
