@@ -24,8 +24,13 @@ public class BookmarkService {
     private SiteUserRepository siteUserRepository; // SiteUserRepository 추가
 
 
-    public List<Bookmark> getBookmarksForUser(String name) {
-        return null;
+    public List<Bookmark> getBookmarksForUser(String loginId) {
+        // 사용자 정보 가져오기
+        SiteUser user = siteUserRepository.findByLoginId(loginId)
+            .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+
+        // 사용자의 북마크 조회
+        return bookmarkRepository.findByUser(user);
     }
 
     public void addBookmark(Long volunteeringId, String name) {

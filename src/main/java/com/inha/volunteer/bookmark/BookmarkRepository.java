@@ -2,6 +2,7 @@ package com.inha.volunteer.bookmark;
 
 import com.inha.volunteer.user.SiteUser;
 import com.inha.volunteer.volunteer.Volunteering;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
@@ -11,4 +12,5 @@ public interface BookmarkRepository extends JpaRepository<Bookmark, Long> {
 
     Optional<Bookmark> findByVolunteeringIdAndUserLoginId(Long volunteeringId, String name);
 
+    List<Bookmark> findByUser(SiteUser user);
 }

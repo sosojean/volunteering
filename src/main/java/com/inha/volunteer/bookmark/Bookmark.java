@@ -24,12 +24,12 @@ public class Bookmark {
     private Long id;
 
     // 사용자와의 관계 설정
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private SiteUser user;
 
     // 봉사활동과의 관계 설정
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "volunteering_id", nullable = false)
     private Volunteering volunteering;
 

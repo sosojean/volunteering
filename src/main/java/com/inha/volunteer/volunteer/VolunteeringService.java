@@ -104,7 +104,6 @@ public class VolunteeringService {
                 );
 
                 volunteeringRepository.save(volunteering);
-
                 System.out.println(item.get("actBeginTm"));
             }
 

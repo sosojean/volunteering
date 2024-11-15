@@ -51,17 +51,17 @@ public class BookmarkController {
         }
     }
 //
-//    // 북마크 목록 조회
-//    @GetMapping("/list")
-//    public ResponseEntity<List<Bookmark>> listBookmarks(Principal principal) {
-//        try {
-//            List<Bookmark> bookmarks = bookmarkService.getBookmarksForUser(principal.getName());
-//            return ResponseEntity.ok(bookmarks);
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-//        }
-//    }
-//
+    // 북마크 목록 조회
+    @GetMapping("/list")
+    public ResponseEntity<List<Bookmark>> listBookmarks(Principal principal) {
+        try {
+            List<Bookmark> bookmarks = bookmarkService.getBookmarksForUser(principal.getName());
+            return ResponseEntity.ok(bookmarks);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
 //
 //    @GetMapping("/check/{volunteeringId}")
 //    public ResponseEntity<Boolean> checkBookmark(@PathVariable Long volunteeringId, Principal principal) {
